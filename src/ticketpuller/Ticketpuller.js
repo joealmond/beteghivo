@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 const Ticketpuller = ({ cueObj, setCueObj }) => {
-  // const [cueObj, setCueObj] = useState({});
   const [examsData, setExamsData] = useState({});
 
   useEffect(() => {
