@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-const Ticketpuller = () => {
-  const [cueObj, setCueObj] = useState({});
+const Ticketpuller = ({ cueObj, setCueObj }) => {
+  // const [cueObj, setCueObj] = useState({});
   const [examsData, setExamsData] = useState({});
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const Ticketpuller = () => {
 
   const ExamButton = (props) => {
     const [examName, setExamName] = useState(props.exam);
-    const { cueObj } = props;
+    const { cueObj, setCueObj } = props;
     function handleClick() {
       let examCode = Object.values(examsData.examCodes)[
         Object.values(examsData.exams).indexOf(examName)
@@ -36,10 +36,10 @@ const Ticketpuller = () => {
           },
           body: JSON.stringify(sendObj),
         });
-        const cue = await response.json();
-        setCueObj(cue);
+        const cueNumber = await response.json();
+        setCueObj(cueNumber);
       }
-      cueObj = getCueNumber();
+      getCueNumber();
     }
 
     return (
@@ -55,7 +55,7 @@ const Ticketpuller = () => {
   function renderExam(exam) {
     return (
       <li key={exam}>
-        <ExamButton exam={exam} cueObj={cueObj} />
+        <ExamButton exam={exam} cueObj={cueObj} setCueObj={setCueObj} />
       </li>
     );
   }
@@ -88,7 +88,8 @@ const Ticketpuller = () => {
             )}
           </div>
         </form>
-        {cueObj.sorszam && <p>{cueObj.sorszam}</p>}
+        {cueObj.sorszam && <p>{"Kiadott sorszám: " + cueObj.sorszam}</p>}
+        {localStorage.setItem("cueNumber", cueObj.sorszam)}
       </div>
     </section>
   );

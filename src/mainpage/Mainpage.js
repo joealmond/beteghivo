@@ -3,10 +3,10 @@ import Maindisplay from "../maindisplay/Maindisplay";
 import Localdisplay from "../localdisplay/Localdisplay";
 import Localcaller from "../localcaller/Localcaller";
 
-export default function Mainpage() {
+export default function Mainpage({ cueObj, setCueObj }) {
   return (
     <>
-      <Ticketpuller />
+      <Ticketpuller cueObj={cueObj} setCueObj={setCueObj} />
       <Maindisplay />
       <Localdisplay />
       <Localcaller />
