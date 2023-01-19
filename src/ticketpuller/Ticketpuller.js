@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from "react";
 
-const Ticketpuller = ({ cueObj, setCueObj }) => {
-  const [examsData, setExamsData] = useState({});
-
+const Ticketpuller = ({
+  cueObj,
+  setCueObj,
+  examsData,
+  setExamsData,
+  examName,
+  setExamName,
+  examCode,
+  setExamCode,
+  room,
+  setRoom,
+}) => {
   useEffect(() => {
     async function getExams() {
       const response = await fetch("/vizsgalat");
@@ -14,13 +23,24 @@ const Ticketpuller = ({ cueObj, setCueObj }) => {
     getExams();
   }, []);
 
-  const ExamButton = (props) => {
-    const [examName, setExamName] = useState(props.exam);
-    const { cueObj, setCueObj } = props;
+  const ExamButton = ({
+    cueObj,
+    setCueObj,
+    examsData,
+    setExamsData,
+    examName,
+    setExamName,
+    examCode,
+    setExamCode,
+    exam,
+  }) => {
     function handleClick() {
       let examCode = Object.values(examsData.examCodes)[
         Object.values(examsData.exams).indexOf(examName)
       ];
+      setExamName(exam);
+      setExamCode(examCode);
+
       let taj = "";
       const sendObj = {
         vizsgalatKod: examCode,
@@ -42,19 +62,24 @@ const Ticketpuller = ({ cueObj, setCueObj }) => {
     }
 
     return (
-      <input
-        type="submit"
-        name="exam"
-        value={props.exam}
-        onClick={handleClick}
-      />
+      <input type="submit" name="exam" value={exam} onClick={handleClick} />
     );
   };
 
   function renderExam(exam) {
     return (
       <li key={exam}>
-        <ExamButton exam={exam} cueObj={cueObj} setCueObj={setCueObj} />
+        <ExamButton
+          exam={exam}
+          cueObj={cueObj}
+          setCueObj={setCueObj}
+          examsData={examsData}
+          setExamsData={setExamsData}
+          examName={examName}
+          setExamName={setExamName}
+          examCode={examCode}
+          setExamCode={setExamCode}
+        />
       </li>
     );
   }
@@ -87,7 +112,13 @@ const Ticketpuller = ({ cueObj, setCueObj }) => {
             )}
           </div>
         </form>
-        {cueObj.sorszam && <p>{"Kiadott sorszám: " + cueObj.sorszam}</p>}
+        {cueObj.sorszam && (
+          <p>
+            {"Kiadott sorszám: " + cueObj.sorszam}
+            {" - Vizsgálat: " + examName}
+            {" - Szoba: " + room}
+          </p>
+        )}
         {localStorage.setItem("cueNumber", cueObj.sorszam)}
       </div>
     </section>
