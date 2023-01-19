@@ -1,11 +1,10 @@
-export default function Localcaller() {
+export default function Localcaller({ roomsData }) {
   return (
     <section>
       <h2>Behívó</h2>
       <div>
         <div>
-          <h3>_</h3>
-          <h3>helység</h3>
+          <h3>Vizsgáló {roomsData}</h3>
         </div>
         <table>
           <thead>
