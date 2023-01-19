@@ -9,8 +9,8 @@ const Ticketpuller = ({
   setExamName,
   examCode,
   setExamCode,
-  room,
-  setRoom,
+  // room,
+  // setRoom,
 }) => {
   useEffect(() => {
     async function getExams() {
@@ -39,7 +39,7 @@ const Ticketpuller = ({
         Object.values(examsData.exams).indexOf(examName)
       ];
       setExamName(exam);
-      setExamCode(examCode);
+      // setExamCode(examCode);
 
       let taj = "";
       const sendObj = {
@@ -116,7 +116,7 @@ const Ticketpuller = ({
           <p>
             {"Kiadott sorszám: " + cueObj.sorszam}
             {" - Vizsgálat: " + examName}
-            {" - Szoba: " + room}
+            {/* {" - Szoba: " + room} */}
           </p>
         )}
         {localStorage.setItem("cueNumber", cueObj.sorszam)}

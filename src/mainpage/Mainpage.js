@@ -15,37 +15,37 @@ export default function Mainpage({
   setExamCode,
 }) {
   const [roomsData, setRoomsData] = useState({});
-  const [room, setRoom] = useState({});
-  const exams = examsData.examCodes;
+  // const [room, setRoom] = useState({});
+  // const exams = examsData.examCodes;
 
-  switch (examCode) {
-    case "V01":
-      setRoom("1");
-      // console.log("1. Körzeti nővér");
-      break;
-    case "V02":
-      setRoom("1");
-      // console.log("1. Körzeti nővér");
-      break;
-    case "V00":
-      setRoom("2");
-      // console.log("2. Általános orvos");
-      break;
-    case "V03":
-      setRoom("2");
-      // console.log("2. Általános orvos");
-      break;
-    case "V04":
-      setRoom("2");
-      // console.log("2. Általános orvos");
-      break;
-    case "V06":
-      setRoom("3");
-      // console.log("3. Bőrgyógyász");
-      break;
-    default:
-    // console.log("Ismeretlen vizsgálat");
-  }
+  // switch (examCode) {
+  //   case "V01":
+  //     setRoom("1");
+  //     // console.log("1. Körzeti nővér");
+  //     break;
+  //   case "V02":
+  //     setRoom("1");
+  //     // console.log("1. Körzeti nővér");
+  //     break;
+  //   case "V00":
+  //     setRoom("2");
+  //     // console.log("2. Általános orvos");
+  //     break;
+  //   case "V03":
+  //     setRoom("2");
+  //     // console.log("2. Általános orvos");
+  //     break;
+  //   case "V04":
+  //     setRoom("2");
+  //     // console.log("2. Általános orvos");
+  //     break;
+  //   case "V06":
+  //     setRoom("3");
+  //     // console.log("3. Bőrgyógyász");
+  //     break;
+  //   default:
+  //   // console.log("Ismeretlen vizsgálat");
+  // }
   useEffect(() => {
     async function getRooms() {
       const response = await fetch("/szobak");
@@ -68,8 +68,8 @@ export default function Mainpage({
         setExamName={setExamName}
         examCode={examCode}
         setExamCode={setExamCode}
-        room={room}
-        setRoom={setRoom}
+        // room={room}
+        // setRoom={setRoom}
       />
       <Maindisplay />
       {Array.from({ length: nRooms }, (n, i) => (
