@@ -4,7 +4,7 @@ import Ticketpage from "./ticketpage/Ticketpage";
 import Mainpage from "./mainpage/Mainpage";
 
 function App() {
-  const [cueObj, setCueObj] = useState({});
+  const [cueData, setCueData] = useState({});
   const [examsData, setExamsData] = useState({});
   const [examName, setExamName] = useState({});
   const [examCode, setExamCode] = useState({});
@@ -13,14 +13,14 @@ function App() {
       <Routes>
         <Route
           path="/sorszam"
-          element={<Ticketpage cueObj={cueObj} setCueObj={setCueObj} />}
+          element={<Ticketpage cueData={cueData} setCueData={setCueData} />}
         />
         <Route
           path="/"
           element={
             <Mainpage
-              cueObj={cueObj}
-              setCueObj={setCueObj}
+              cueData={cueData}
+              setCueData={setCueData}
               examsData={examsData}
               setExamsData={setExamsData}
               examName={examName}

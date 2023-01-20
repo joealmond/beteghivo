@@ -1,8 +1,14 @@
+// TODO: Form külün modul komponensbe rakása és működésének javítása
+// TODO: Form szerver POST javítása - valmiért blokkolja a szerver
+// TODO: Sorszámozni a gombokat
+// TODO: Tajszám integrálása, ellenőrzése
+// TODO: időpont és egyéb adatok kírása séma alpján
+
 import React, { useState, useEffect } from "react";
 
 const Ticketpuller = ({
-  cueObj,
-  setCueObj,
+  cueData,
+  setCueData,
   examsData,
   setExamsData,
   examName,
@@ -15,17 +21,17 @@ const Ticketpuller = ({
   useEffect(() => {
     async function getExams() {
       const response = await fetch("/vizsgalat");
-      const examsObj = await response.json();
-      const exams = examsObj.map((exam) => exam.megnevezes);
-      const examCodes = examsObj.map((exam) => exam.kod);
+      const examsData = await response.json();
+      const exams = examsData.map((exam) => exam.megnevezes);
+      const examCodes = examsData.map((exam) => exam.kod);
       setExamsData({ exams, examCodes });
     }
     getExams();
   }, []);
 
   const ExamButton = ({
-    cueObj,
-    setCueObj,
+    cueData,
+    setCueData,
     examsData,
     setExamsData,
     examName,
@@ -35,6 +41,7 @@ const Ticketpuller = ({
     exam,
   }) => {
     function handleClick() {
+      console.log("hihi");
       let examCode = Object.values(examsData.examCodes)[
         Object.values(examsData.exams).indexOf(examName)
       ];
@@ -48,15 +55,24 @@ const Ticketpuller = ({
       };
 
       async function getCueNumber() {
-        const response = await fetch("/sorszam", {
+        console.log("Mennyi?");
+        const response = await fetch("", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(sendObj),
         });
-        const cueNumber = await response.json();
-        setCueObj(cueNumber);
+        const cueData = await response.json();
+        // RESPONSE SCHEMA:
+        // {
+        //   "sorszam": 249,
+        //   "vizsgalatKod": "V00",
+        //   "taj": "",
+        //   "erkezesIdeje": "2023-01-20T08:53:54.889278837",
+        //   "varakozok": 12
+        // }
+        setCueData(cueData);
       }
       getCueNumber();
     }
@@ -71,8 +87,8 @@ const Ticketpuller = ({
       <li key={exam}>
         <ExamButton
           exam={exam}
-          cueObj={cueObj}
-          setCueObj={setCueObj}
+          cueData={cueData}
+          setCueData={setCueData}
           examsData={examsData}
           setExamsData={setExamsData}
           examName={examName}
@@ -112,14 +128,14 @@ const Ticketpuller = ({
             )}
           </div>
         </form>
-        {cueObj.sorszam && (
+        {cueData.sorszam && (
           <p>
-            {"Kiadott sorszám: " + cueObj.sorszam}
+            {"Kiadott sorszám: " + cueData.sorszam}
             {" - Vizsgálat: " + examName}
             {/* {" - Szoba: " + room} */}
           </p>
         )}
-        {localStorage.setItem("cueNumber", cueObj.sorszam)}
+        {localStorage.setItem("cueNumber", cueData.sorszam)}
       </div>
     </section>
   );

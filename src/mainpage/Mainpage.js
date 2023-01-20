@@ -1,3 +1,5 @@
+// TODO: vizsgálatkód szobákba való elosztása
+
 import React, { useState, useEffect } from "react";
 import Ticketpuller from "../ticketpuller/Ticketpuller.js";
 import Maindisplay from "../maindisplay/Maindisplay";
@@ -5,8 +7,8 @@ import Localdisplay from "../localdisplay/Localdisplay";
 import Localcaller from "../localcaller/Localcaller";
 
 export default function Mainpage({
-  cueObj,
-  setCueObj,
+  cueData,
+  setCueData,
   examsData,
   setExamsData,
   examName,
@@ -49,8 +51,8 @@ export default function Mainpage({
   useEffect(() => {
     async function getRooms() {
       const response = await fetch("/szobak");
-      const roomsObj = await response.json();
-      setRoomsData(roomsObj);
+      const roomsData = await response.json();
+      setRoomsData(roomsData);
     }
     getRooms();
   }, []);
@@ -60,8 +62,8 @@ export default function Mainpage({
   return (
     <>
       <Ticketpuller
-        cueObj={cueObj}
-        setCueObj={setCueObj}
+        cueData={cueData}
+        setCueData={setCueData}
         examsData={examsData}
         setExamsData={setExamsData}
         examName={examName}
@@ -74,13 +76,19 @@ export default function Mainpage({
       <Maindisplay />
       {Array.from({ length: nRooms }, (n, i) => (
         <Localdisplay
-          roomsData={roomsData[i].szam + " - " + roomsData[i].megnevezes}
+          roomsData={{
+            szam: roomsData[i].szam,
+            megnevezes: roomsData[i].megnevezes,
+          }}
           setRoomsData={setRoomsData}
         />
       ))}
       {Array.from({ length: nRooms }, (n, i) => (
         <Localcaller
-          roomsData={roomsData[i].szam + " - " + roomsData[i].megnevezes}
+          roomsData={{
+            szam: roomsData[i].szam,
+            megnevezes: roomsData[i].megnevezes,
+          }}
           setRoomsData={setRoomsData}
         />
       ))}

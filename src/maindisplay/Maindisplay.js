@@ -1,3 +1,12 @@
+// TODO: az összes behívott sorszám kijelzése
+// EXAMPLE SCHEMA:
+// [
+//   {
+//     "sorszam": 0,
+//     "szoba": 0,
+//     "behívasIdeje": "2023-01-20T09:55:44.015Z"
+//   }
+// ]
 export default function Maindisplay() {
   return (
     <section>
