@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Ticketpuller from "../ticketpuller/Ticketpuller.js";
 import Maindisplay from "../maindisplay/Maindisplay";
 import Localdisplay from "../localdisplay/Localdisplay";
@@ -17,12 +17,14 @@ export default function Mainpage({
   setRoom,
 }) {
   const [roomsData, setRoomsData] = useState({});
+  const nRoomsRef = useRef("");
 
   useEffect(() => {
     async function getRooms() {
       const response = await fetch("/szobak");
       const roomsData = await response.json();
       setRoomsData(roomsData);
+      nRoomsRef.current = roomsData.length;
     }
     getRooms();
   }, []);
@@ -57,6 +59,7 @@ export default function Mainpage({
       {Array.from({ length: nRooms }, (n, i) => (
         <Localcaller
           key={roomsData[i].szam}
+          nRoomsRef={nRoomsRef}
           roomId={roomsData[i].szam}
           examName={examName}
           setExamName={setExamName}
