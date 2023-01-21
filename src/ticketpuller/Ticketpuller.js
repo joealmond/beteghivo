@@ -49,6 +49,10 @@ const Ticketpuller = ({
     }
   }, [examCode, setRoom]);
 
+  let time = new Date(Date.parse(cueData.erkezesIdeje)).toLocaleTimeString(
+    "hu-HU"
+  );
+
   return (
     <section>
       <h2>Sorszámosztó automata</h2>
@@ -72,11 +76,14 @@ const Ticketpuller = ({
         {cueData.sorszam && (
           <p>
             {"Kiadott sorszám: " + cueData.sorszam}
-            {" - Vizsgálat: " + examName}
-            {" - Szoba: " + room}
+            {" -  " + examName}
+            {" -  " + room + ". szoba"}
           </p>
         )}
         {localStorage.setItem("cueNumber", cueData.sorszam)}
+        {localStorage.setItem("cueRemain", cueData.varakozok)}
+        {localStorage.setItem("cueInTime", time)}
+        {localStorage.setItem("room", room)}
       </div>
     </section>
   );

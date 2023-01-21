@@ -8,12 +8,20 @@ function App() {
   const [examsData, setExamsData] = useState({});
   const [examName, setExamName] = useState({});
   const [examCode, setExamCode] = useState({});
+  const [room, setRoom] = useState({});
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path="/sorszam"
-          element={<Ticketpage cueData={cueData} setCueData={setCueData} />}
+          element={
+            <Ticketpage
+              cueData={cueData}
+              setCueData={setCueData}
+              room={room}
+              setRoom={setRoom}
+            />
+          }
         />
         <Route
           path="/"
@@ -27,6 +35,8 @@ function App() {
               setExamName={setExamName}
               examCode={examCode}
               setExamCode={setExamCode}
+              room={room}
+              setRoom={setRoom}
             />
           }
         />

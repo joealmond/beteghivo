@@ -23,14 +23,7 @@ export default function FormButton({
       }),
     });
     const cueData = await response.json();
-    // RESPONSE SCHEMA:
-    // {
-    //   "sorszam": 249,
-    //   "vizsgalatKod": "V00",
-    //   "taj": "",
-    //   "erkezesIdeje": "2023-01-20T08:53:54.889278837",
-    //   "varakozok": 12
-    // }
+
     setExamCode(examCode);
     setExamName(examName);
     setCueData(cueData);
@@ -39,7 +32,7 @@ export default function FormButton({
   return (
     <input
       type="submit"
-      name="exam"
+      name=""
       value={examName}
       onClick={() => getCueNumber()}
     />

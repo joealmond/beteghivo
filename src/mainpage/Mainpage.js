@@ -13,9 +13,10 @@ export default function Mainpage({
   setExamName,
   examCode,
   setExamCode,
+  room,
+  setRoom,
 }) {
   const [roomsData, setRoomsData] = useState({});
-  const [room, setRoom] = useState({});
 
   useEffect(() => {
     async function getRooms() {
@@ -56,6 +57,11 @@ export default function Mainpage({
       {Array.from({ length: nRooms }, (n, i) => (
         <Localcaller
           key={roomsData[i].szam}
+          roomId={roomsData[i].szam}
+          examName={examName}
+          setExamName={setExamName}
+          room={room}
+          setRoom={setRoom}
           roomsData={{
             szam: roomsData[i].szam,
             megnevezes: roomsData[i].megnevezes,
