@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+// TODO: az apról lekért szobaszámok alapján generálni a választási lehetőségeket
 // TODO: táblázat a várakozók adataival
 // EXAMPLE SCHEMA:
 // [
@@ -21,31 +22,32 @@ import React, { useEffect, useState, useRef } from "react";
 
 export default function Localcaller({
   roomsData,
-  cueData,
-  setCueData,
-  examsData,
-  setExamsData,
+  // cueData,
+  // setCueData,
+  // examsData,
+  // setExamsData,
   examName,
-  setExamName,
-  examCode,
-  setExamCode,
-  room,
-  setRoom,
+  // setExamName,
+  // examCode,
+  // setExamCode,
+  // room,
+  // setRoom,
   roomId,
   nRoomsRef,
 }) {
-  const cueRef = useRef([]);
+  const cueRef1 = useRef([]);
+  const cueRef2 = useRef([]);
+  const cueRef3 = useRef([]);
 
   let cueArray = {};
 
   for (let i = 0; i < nRoomsRef.current; i++) {
     cueArray[i] = [];
   }
-  let nRoomsArr = Array.from({ length: nRoomsRef.current }, (n, i) => i + 1);
 
   let tajTemp = "-";
 
-  if (nRoomsArr.indexOf(roomId) == roomId - 1) {
+  function RenderRow(roomId) {
     if (roomId == localStorage.getItem("room")) {
       cueArray[roomId - 1] = (
         <tr>
@@ -54,15 +56,19 @@ export default function Localcaller({
           <td>{localStorage.getItem("cueInTime")}</td>
           <td>{tajTemp}</td>
           <td>{roomId}</td>
+          <td>{localStorage.getItem("room")}</td>
         </tr>
       );
 
-      cueRef.current = cueArray[roomId - 1];
+      // cueRef1.current = [...cueRef1.current, cueArray[0]];
+      // cueRef2.current = [...cueRef2.current, cueArray[1]];
+      // cueRef3.current = [...cueRef3.current, cueArray[2]];
     }
-  }
+    // if (roomId == 1) return cueRef1.current;
+    // if (roomId == 2) return cueRef2.current;
+    // if (roomId == 3) return cueRef3.current;
 
-  function RenderRow() {
-    return cueRef.current;
+    return cueArray[roomId - 1];
   }
 
   return (
@@ -82,19 +88,7 @@ export default function Localcaller({
               <th>Szoba</th>
             </tr>
           </thead>
-          <tbody>
-            {RenderRow()}
-            {/* <tr>
-              <td>{cueNumberTemp}</td>
-              <td>{examTemp}</td>
-              <td>{cueInTimeTemp}</td>
-              <td>{tajTemp}</td>
-              <td>{roomTemp}</td>
-            </tr>
-            {rowContent.map((content, index) => (
-              <React.Fragment key={index}>{content}</React.Fragment>
-            ))} */}
-          </tbody>
+          <tbody>{RenderRow(roomId)}</tbody>
         </table>
         <button>Kérem a következőt</button>
       </div>
