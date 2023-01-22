@@ -1,4 +1,4 @@
-// import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 
 // TODO: az apról lekért szobaszámok alapján generálni a választási lehetőségeket
 // TODO: táblázat a várakozók adataival
@@ -33,6 +33,7 @@ export default function Localcaller({
   // setRoom,
   roomId,
 }) {
+  const [renderRenderRowState, setRenderRenderRowState] = useState();
   // const cueRef1 = useRef([]);
   // const cueRef2 = useRef([]);
   // const cueRef3 = useRef([]);
@@ -69,6 +70,12 @@ export default function Localcaller({
     return cueArray[roomId - 1];
   }
 
+  useEffect(() => {
+    setInterval(() => {
+      setRenderRenderRowState(RenderRow(roomId));
+    }, 10000);
+  }, []);
+
   return (
     <section>
       <h2>Behívó</h2>
@@ -86,7 +93,7 @@ export default function Localcaller({
               <th>Szoba</th>
             </tr>
           </thead>
-          <tbody>{RenderRow(roomId)}</tbody>
+          <tbody>{renderRenderRowState}</tbody>
         </table>
         <button>Kérem a következőt</button>
       </div>

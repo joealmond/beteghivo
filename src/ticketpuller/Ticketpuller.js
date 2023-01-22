@@ -14,6 +14,7 @@ const Ticketpuller = ({
   setExamCode,
   room,
   setRoom,
+  roomsData,
 }) => {
   useEffect(() => {
     switch (examCode) {
@@ -72,7 +73,8 @@ const Ticketpuller = ({
         {cueData.sorszam && (
           <p>
             {"Kiadott sorszám: " + cueData.sorszam}
-            {" -  " + examsData.megnevezes}
+            {/* TODO: roomsData[0].megnevezes csere!!!*/}
+            {" -  " + roomsData[0].megnevezes}
             {" -  " + room + ". szoba"}
           </p>
         )}
