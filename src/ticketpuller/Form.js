@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import FormButton from "./FormButton.js";
 
 export default function Form({
@@ -10,17 +10,6 @@ export default function Form({
   examCode,
   setExamCode,
 }) {
-  useEffect(() => {
-    async function getExams() {
-      const response = await fetch("/vizsgalat");
-      const examsData = await response.json();
-      const exams = examsData.map((exam) => exam.megnevezes);
-      const examCodes = examsData.map((exam) => exam.kod);
-      setExamsData({ exams, examCodes });
-    }
-    getExams();
-  }, [setExamsData]);
-
   function renderButton(examName) {
     return (
       <li key={examName}>

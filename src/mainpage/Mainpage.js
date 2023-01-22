@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Ticketpuller from "../ticketpuller/Ticketpuller.js";
 import Maindisplay from "../maindisplay/Maindisplay";
 import Localdisplay from "../localdisplay/Localdisplay";
@@ -15,21 +15,28 @@ export default function Mainpage({
   setExamCode,
   room,
   setRoom,
+  roomsData,
+  setRoomsData,
 }) {
-  const [roomsData, setRoomsData] = useState({});
-  const nRoomsRef = useRef("");
+  useEffect(() => {
+    async function getExams() {
+      const response = await fetch("/vizsgalat");
+      const examsData = await response.json();
+      const exams = examsData.map((exam) => exam.megnevezes);
+      const examCodes = examsData.map((exam) => exam.kod);
+      setExamsData({ exams, examCodes });
+    }
+    getExams();
+  }, []);
 
   useEffect(() => {
     async function getRooms() {
       const response = await fetch("/szobak");
       const roomsData = await response.json();
       setRoomsData(roomsData);
-      nRoomsRef.current = roomsData.length;
     }
     getRooms();
   }, []);
-
-  const nRooms = roomsData.length;
 
   return (
     <>
@@ -46,7 +53,7 @@ export default function Mainpage({
         setRoom={setRoom}
       />
       <Maindisplay />
-      {Array.from({ length: nRooms }, (n, i) => (
+      {Array.from({ length: roomsData.length }, (n, i) => (
         <Localdisplay
           key={roomsData[i].szam}
           roomsData={{
@@ -56,10 +63,9 @@ export default function Mainpage({
           setRoomsData={setRoomsData}
         />
       ))}
-      {Array.from({ length: nRooms }, (n, i) => (
+      {Array.from({ length: roomsData.length }, (n, i) => (
         <Localcaller
           key={roomsData[i].szam}
-          nRoomsRef={nRoomsRef}
           roomId={roomsData[i].szam}
           examName={examName}
           setExamName={setExamName}

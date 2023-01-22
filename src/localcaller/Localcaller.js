@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useRef } from "react";
+// import React, { useEffect, useState, useRef } from "react";
+
 // TODO: az apról lekért szobaszámok alapján generálni a választási lehetőségeket
 // TODO: táblázat a várakozók adataival
 // EXAMPLE SCHEMA:
@@ -33,22 +34,21 @@ export default function Localcaller({
   // room,
   // setRoom,
   roomId,
-  nRoomsRef,
 }) {
-  const cueRef1 = useRef([]);
-  const cueRef2 = useRef([]);
-  const cueRef3 = useRef([]);
+  // const cueRef1 = useRef([]);
+  // const cueRef2 = useRef([]);
+  // const cueRef3 = useRef([]);
 
   let cueArray = {};
 
-  for (let i = 0; i < nRoomsRef.current; i++) {
+  for (let i = 0; i < roomsData.length; i++) {
     cueArray[i] = [];
   }
 
   let tajTemp = "-";
 
   function RenderRow(roomId) {
-    if (roomId == localStorage.getItem("room")) {
+    if (roomId === Number(localStorage.getItem("room"))) {
       cueArray[roomId - 1] = (
         <tr>
           <td>{localStorage.getItem("cueNumber")}</td>
@@ -153,8 +153,8 @@ export default function Localcaller({
 //     }, 10000);
 //   }, [rowContent]);
 
-{
-  /* <tr>
+// {
+/* <tr>
 <td>{cueNumberTemp}</td>
 <td>{examTemp}</td>
 <td>{cueInTimeTemp}</td>
@@ -165,4 +165,4 @@ export default function Localcaller({
 <React.Fragment key={index}>{content}</React.Fragment>
 ))}
 </tbody> */
-}
+// }

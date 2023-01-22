@@ -4,6 +4,7 @@ import Ticketpage from "./ticketpage/Ticketpage";
 import Mainpage from "./mainpage/Mainpage";
 
 function App() {
+  const [roomsData, setRoomsData] = useState({});
   const [cueData, setCueData] = useState({});
   const [examsData, setExamsData] = useState({});
   const [examName, setExamName] = useState({});
@@ -37,6 +38,8 @@ function App() {
               setExamCode={setExamCode}
               room={room}
               setRoom={setRoom}
+              roomsData={roomsData}
+              setRoomsData={setRoomsData}
             />
           }
         />
