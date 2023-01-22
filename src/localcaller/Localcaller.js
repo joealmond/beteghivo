@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 // TODO: az apról lekért szobaszámok alapján generálni a választási lehetőségeket
 // TODO: táblázat a várakozók adataival
@@ -34,9 +34,10 @@ export default function Localcaller({
   roomId,
 }) {
   const [renderRenderRowState, setRenderRenderRowState] = useState();
-  // const cueRef1 = useRef([]);
-  // const cueRef2 = useRef([]);
-  // const cueRef3 = useRef([]);
+  const cueRef1 = useRef([]);
+  const cueRef2 = useRef([]);
+  const cueRef3 = useRef([]);
+  const cueNumRef = useRef(localStorage.getItem("cueNumber"));
 
   let cueArray = {};
 
@@ -47,7 +48,10 @@ export default function Localcaller({
   let tajTemp = "-";
 
   function RenderRow(roomId) {
-    if (roomId === Number(localStorage.getItem("room"))) {
+    if (
+      roomId === Number(localStorage.getItem("room")) &&
+      localStorage.getItem("cueNumber") !== cueNumRef.current
+    ) {
       cueArray[roomId - 1] = (
         <tr>
           <td>{localStorage.getItem("cueNumber")}</td>
@@ -58,16 +62,14 @@ export default function Localcaller({
           <td>{localStorage.getItem("room")}</td>
         </tr>
       );
-
-      // cueRef1.current = [...cueRef1.current, cueArray[0]];
-      // cueRef2.current = [...cueRef2.current, cueArray[1]];
-      // cueRef3.current = [...cueRef3.current, cueArray[2]];
+      cueNumRef.current = localStorage.getItem("cueNumber");
+      cueRef1.current = [...cueRef1.current, cueArray[0]];
+      cueRef2.current = [...cueRef2.current, cueArray[1]];
+      cueRef3.current = [...cueRef3.current, cueArray[2]];
     }
-    // if (roomId == 1) return cueRef1.current;
-    // if (roomId == 2) return cueRef2.current;
-    // if (roomId == 3) return cueRef3.current;
-
-    return cueArray[roomId - 1];
+    if (roomId == 1) return cueRef1.current;
+    if (roomId == 2) return cueRef2.current;
+    if (roomId == 3) return cueRef3.current;
   }
 
   useEffect(() => {
@@ -100,74 +102,3 @@ export default function Localcaller({
     </section>
   );
 }
-
-// const [rowContent, setRowContent] = useState([]);
-//   const prevRowContent = useRef([]);
-//   let exam = `${roomsData.megnevezes}`;
-
-//   let roomTemp = "";
-//   let examTemp = "";
-//   let tajTemp = "";
-//   let cueNumberTemp = "";
-//   let cueInTimeTemp = "";
-//   const cueArray = [
-//     {
-//       roomTemp: "",
-//       examTemp: "",
-//       tajTemp: "",
-//       cueNumberTemp: "",
-//       cueInTimeTemp: "",
-//     },
-//   ];
-//   if (roomId == localStorage.getItem("room")) {
-//     roomTemp = localStorage.getItem("room");
-//     examTemp = exam;
-//     tajTemp = "---";
-//     cueNumberTemp = localStorage.getItem("cueNumber");
-//     cueInTimeTemp = localStorage.getItem("cueInTime");
-//     cueArray.push({
-//       roomTemp: localStorage.getItem("room"),
-//       examTemp: exam,
-//       tajTemp: "---",
-//       cueNumberTemp: localStorage.getItem("cueNumber"),
-//       cueInTimeTemp: localStorage.getItem("cueInTime"),
-//     });
-//   }
-//   console.log(cueArray);
-//   function RenderRow() {
-//     setRowContent([
-//       ...rowContent,
-//       <tr>
-//         <td>{cueNumberTemp}</td>
-//         <td>{examTemp}</td>
-//         <td>{cueInTimeTemp}</td>
-//         <td>{tajTemp}</td>
-//         <td>{roomTemp}</td>
-//       </tr>,
-//     ]);
-//   }
-
-//   useEffect(() => {
-//     setInterval(() => {
-//       if (prevRowContent.current !== rowContent) {
-//         prevRowContent.current = rowContent;
-//         if (roomTemp != localStorage.getItem("room")) {
-//           RenderRow();
-//         }
-//       }
-//     }, 10000);
-//   }, [rowContent]);
-
-// {
-/* <tr>
-<td>{cueNumberTemp}</td>
-<td>{examTemp}</td>
-<td>{cueInTimeTemp}</td>
-<td>{tajTemp}</td>
-<td>{roomTemp}</td>
-</tr>
-{rowContent.map((content, index) => (
-<React.Fragment key={index}>{content}</React.Fragment>
-))}
-</tbody> */
-// }
