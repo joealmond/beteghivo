@@ -6,20 +6,18 @@ export default function Form({
   setExamsData,
   cueData,
   setCueData,
-  setExamName,
   examCode,
   setExamCode,
 }) {
-  function renderButton(examName) {
+  function renderButton(exam) {
     return (
-      <li key={examName}>
+      <li key={exam}>
         <FormButton
           cueData={cueData}
           setCueData={setCueData}
           examsData={examsData}
           setExamsData={setExamsData}
-          examName={examName}
-          setExamName={setExamName}
+          exam={exam}
           examCode={examCode}
           setExamCode={setExamCode}
         />
@@ -44,7 +42,7 @@ export default function Form({
       </div>
       <div>
         {examsData.exams && (
-          <ul>{examsData.exams.map((examName) => renderButton(examName))}</ul>
+          <ul>{examsData.exams.map((exam) => renderButton(exam))}</ul>
         )}
       </div>
     </form>

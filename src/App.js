@@ -7,7 +7,6 @@ function App() {
   const [roomsData, setRoomsData] = useState({});
   const [cueData, setCueData] = useState({});
   const [examsData, setExamsData] = useState({});
-  const [examName, setExamName] = useState({});
   const [examCode, setExamCode] = useState({});
   const [room, setRoom] = useState({});
   return (
@@ -32,8 +31,6 @@ function App() {
               setCueData={setCueData}
               examsData={examsData}
               setExamsData={setExamsData}
-              examName={examName}
-              setExamName={setExamName}
               examCode={examCode}
               setExamCode={setExamCode}
               room={room}

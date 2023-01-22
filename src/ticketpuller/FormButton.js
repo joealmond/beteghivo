@@ -3,13 +3,12 @@ export default function FormButton({
   setCueData,
   examsData,
   //   setExamsData,
-  examName,
-  setExamName,
+  exam,
   //   examCode,
   setExamCode,
 }) {
   let examCode = Object.values(examsData.examCodes)[
-    Object.values(examsData.exams).indexOf(examName)
+    Object.values(examsData.exams).indexOf(exam)
   ];
   async function getCueNumber() {
     const response = await fetch("/sorszam", {
@@ -25,16 +24,10 @@ export default function FormButton({
     const cueData = await response.json();
 
     setExamCode(examCode);
-    setExamName(examName);
     setCueData(cueData);
   }
 
   return (
-    <input
-      type="submit"
-      name=""
-      value={examName}
-      onClick={() => getCueNumber()}
-    />
+    <input type="submit" name="" value={exam} onClick={() => getCueNumber()} />
   );
 }

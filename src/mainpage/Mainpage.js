@@ -9,8 +9,6 @@ export default function Mainpage({
   setCueData,
   examsData,
   setExamsData,
-  examName,
-  setExamName,
   examCode,
   setExamCode,
   room,
@@ -45,8 +43,6 @@ export default function Mainpage({
         setCueData={setCueData}
         examsData={examsData}
         setExamsData={setExamsData}
-        examName={examName}
-        setExamName={setExamName}
         examCode={examCode}
         setExamCode={setExamCode}
         room={room}
@@ -67,8 +63,6 @@ export default function Mainpage({
         <Localcaller
           key={roomsData[i].szam}
           roomId={roomsData[i].szam}
-          examName={examName}
-          setExamName={setExamName}
           room={room}
           setRoom={setRoom}
           roomsData={{

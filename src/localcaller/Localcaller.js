@@ -27,8 +27,6 @@ export default function Localcaller({
   // setCueData,
   // examsData,
   // setExamsData,
-  examName,
-  // setExamName,
   // examCode,
   // setExamCode,
   // room,
@@ -52,7 +50,7 @@ export default function Localcaller({
       cueArray[roomId - 1] = (
         <tr>
           <td>{localStorage.getItem("cueNumber")}</td>
-          <td>{`${examName}`}</td>
+          <td>{roomsData.megnevezes}</td>
           <td>{localStorage.getItem("cueInTime")}</td>
           <td>{tajTemp}</td>
           <td>{roomId}</td>
@@ -98,7 +96,7 @@ export default function Localcaller({
 
 // const [rowContent, setRowContent] = useState([]);
 //   const prevRowContent = useRef([]);
-//   let exam = `${examName}`;
+//   let exam = `${roomsData.megnevezes}`;
 
 //   let roomTemp = "";
 //   let examTemp = "";

@@ -10,8 +10,6 @@ const Ticketpuller = ({
   setCueData,
   examsData,
   setExamsData,
-  examName,
-  setExamName,
   examCode,
   setExamCode,
   room,
@@ -67,8 +65,6 @@ const Ticketpuller = ({
           setExamsData={setExamsData}
           cueData={cueData}
           setCueData={setCueData}
-          examName={examName}
-          setExamName={setExamName}
           examCode={examCode}
           setExamCode={setExamCode}
         />
@@ -76,7 +72,7 @@ const Ticketpuller = ({
         {cueData.sorszam && (
           <p>
             {"Kiadott sorszám: " + cueData.sorszam}
-            {" -  " + examName}
+            {" -  " + examsData.megnevezes}
             {" -  " + room + ". szoba"}
           </p>
         )}
