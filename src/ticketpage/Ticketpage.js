@@ -1,4 +1,5 @@
 // TODO: styling: window size for print
+// TODO: megjelenített értékek felülvizsgálása
 
 export default function Ticketpage() {
   return (

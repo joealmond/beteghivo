@@ -1,10 +1,8 @@
+// TODO: javítani a form submit megoldást
 export default function FormButton({
-  //   cueData,
   setCueData,
   examsData,
-  //   setExamsData,
   exam,
-  //   examCode,
   setExamCode,
 }) {
   let examCode = Object.values(examsData.examCodes)[

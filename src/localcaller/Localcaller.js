@@ -1,38 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 
-// TODO: az apról lekért szobaszámok alapján generálni a választási lehetőségeket
-// TODO: táblázat a várakozók adataival
-// EXAMPLE SCHEMA:
-// [
-//   {
-//     "sorszam": 0,
-//     "vizsgalatKod": "string",
-//     "taj": "string",
-//     "erkezesIdeje": "2023-01-20T09:50:11.397Z",
-//     "varakozok": 0
-//   }
-// ]
+// TODO: javítani a táblázat formátumát, adatait
+// TODO: stílus beállítása - lelóg a gomb, táblázat megjelenés stb..
+// TODO: redundás kód eltűntetése
+// TODO: programatikusan meghatározni a szobák számát
+// TODO: csak az adatokkal dolgozni és abból renderelni az elemekt
 
-// TODO: Következő behívása gomb
-// EXAMPLE SCHEMA:
-// {
-//   "sorszam": 0,
-//   "szoba": 0,
-//   "behívasIdeje": "2023-01-20T09:52:33.018Z"
-// }
-
-export default function Localcaller({
-  roomsData,
-  // cueData,
-  // setCueData,
-  // examsData,
-  // setExamsData,
-  // examCode,
-  // setExamCode,
-  // room,
-  // setRoom,
-  roomId,
-}) {
+export default function Localcaller({ roomsData, roomId }) {
   const [renderRenderRowState, setRenderRenderRowState] = useState();
   const [renderButtonState, setRenderButtonState] = useState();
 

@@ -1,3 +1,5 @@
+// TODO: uuid probléma megoldása
+
 import React, { useEffect, useState } from "react";
 import uuid from "react-uuid";
 import Ticketpuller from "../ticketpuller/Ticketpuller.js";

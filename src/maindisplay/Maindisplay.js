@@ -1,13 +1,9 @@
+// TODO: 5db behívott sorszám kijelzése
+// TODO:  rendelerés programatikusan
+// TODO: stílus beállítása
+
 import React, { useEffect, useState } from "react";
-// TODO: az összes behívott sorszám kijelzése
-// EXAMPLE SCHEMA:
-// [
-//   {
-//     "sorszam": 0,
-//     "szoba": 0,
-//     "behívasIdeje": "2023-01-20T09:55:44.015Z"
-//   }
-// ]
+
 export default function Maindisplay() {
   const [allCueDataState, setAllCueDataState] = useState({});
   useEffect(() => {

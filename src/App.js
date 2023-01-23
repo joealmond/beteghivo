@@ -1,3 +1,7 @@
+// TODO: az összes state átnézése és kidobálni ami nem kell
+// TODO: a state-ket megoldani objektumokkal
+// TODO: üres objektumértékek elé "?"!
+// TODO: esetleg queryparamétereken átadni az értékeket local storge helyett
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { useState } from "react";
 import Ticketpage from "./ticketpage/Ticketpage";

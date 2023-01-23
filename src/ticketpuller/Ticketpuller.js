@@ -1,6 +1,7 @@
 // TODO: Tajszám integrálása, ellenőrzése
-// TODO: időpont és egyéb adatok kírása séma alpján
+// TODO: kiírt adatok felülvizsgálása, esetleg óra megjelenítése
 // TODO: jó lenne a switch state helyett valami rugalmasabb megoldás ami követi az apit...
+// TODO: a local storage helyett más megoldást találni
 
 import React, { useEffect } from "react";
 import Form from "./Form.js";
@@ -73,8 +74,6 @@ const Ticketpuller = ({
         {cueData.sorszam && (
           <p>
             {"Kiadott sorszám: " + cueData.sorszam}
-            {/* TODO: roomsData[0].megnevezes csere!!!*/}
-            {" -  " + roomsData[0].megnevezes}
             {" -  " + room + ". szoba"}
           </p>
         )}

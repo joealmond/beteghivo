@@ -1,4 +1,6 @@
-// import { useEffect } from "react";
+// TODO: javítani a form formátumát
+// TODO: querryparaméterekkle továbbvinni az adatokat
+
 import FormButton from "./FormButton.js";
 
 export default function Form({

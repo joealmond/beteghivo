@@ -1,11 +1,7 @@
+// TODO: stílus beállítása
+
 import React, { useEffect, useState } from "react";
-// TODO: a szobába behívott sorszám kijelzése
-// EXAMPLE SCHEMA:
-// {
-//   "sorszam": 0,
-//   "szoba": 0,
-//   "behívasIdeje": "2023-01-20T09:54:24.803Z"
-// }
+
 export default function Localdisplay({ roomsData }) {
   const [allCueDataState, setAllCueDataState] = useState({});
   useEffect(() => {
