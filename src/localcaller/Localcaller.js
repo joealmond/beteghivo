@@ -34,6 +34,7 @@ export default function Localcaller({
   roomId,
 }) {
   const [renderRenderRowState, setRenderRenderRowState] = useState();
+  const [renderButtonState, setRenderButtonState] = useState();
 
   const cueRefData1 = useRef([]);
   const cueRefData2 = useRef([]);
@@ -94,13 +95,15 @@ export default function Localcaller({
   }
 
   useEffect(() => {
-    // TODO: Stops after pressing next button...
     const interval = setInterval(() => {
       setRenderRenderRowState(RenderRow(roomId));
     }, 10000);
 
     return () => clearInterval(interval);
-  }, [renderRenderRowState]);
+  }, []);
+  useEffect(() => {
+    setRenderButtonState(Button(roomId));
+  }, [renderButtonState]);
 
   function Button(roomId) {
     let jsonData = {};
@@ -153,7 +156,7 @@ export default function Localcaller({
           </thead>
           <tbody>{renderRenderRowState}</tbody>
         </table>
-        {Button(roomId)}
+        {renderButtonState}
       </div>
     </section>
   );
