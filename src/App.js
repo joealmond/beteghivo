@@ -3,6 +3,7 @@
 // TODO: üres objektumértékek elé "?"! default értékek beírogatása
 // TODO: esetleg queryparamétereken átadni az értékeket local storge helyett
 // TODO: try-chatch blokkok async kódokhoz és egyéb helyekre!!!
+// TODO: globális változókat egy helyre tenni!
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { useState } from "react";
