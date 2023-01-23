@@ -1,7 +1,9 @@
 // TODO: az összes state átnézése és kidobálni ami nem kell
 // TODO: a state-ket megoldani objektumokkal
-// TODO: üres objektumértékek elé "?"!
+// TODO: üres objektumértékek elé "?"! default értékek beírogatása
 // TODO: esetleg queryparamétereken átadni az értékeket local storge helyett
+// TODO: try-chatch blokkok async kódokhoz és egyéb helyekre!!!
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { useState } from "react";
 import Ticketpage from "./ticketpage/Ticketpage";
