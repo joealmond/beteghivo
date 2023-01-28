@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import uuid from "react-uuid";
 
 // TODO: javítani a táblázat formátumát, adatait
 // TODO: stílus beállítása - lelóg a gomb, táblázat megjelenés stb..
@@ -39,7 +40,7 @@ export default function Localcaller({ roomsData, roomId }) {
       localStorage.getItem("cueNumber") !== cueNumRef.current
     ) {
       cueArray[roomId - 1] = (
-        <tr>
+        <tr key={uuid()}>
           <td>{localStorage.getItem("cueNumber")}</td>
           <td>{roomsData.megnevezes}</td>
           <td>{localStorage.getItem("cueInTime")}</td>
@@ -63,9 +64,9 @@ export default function Localcaller({ roomsData, roomId }) {
       cueRef2.current = [...cueRef2.current, cueArray[1]];
       cueRef3.current = [...cueRef3.current, cueArray[2]];
     }
-    if (roomId == 1) return cueRef1.current;
-    if (roomId == 2) return cueRef2.current;
-    if (roomId == 3) return cueRef3.current;
+    if (roomId === 1) return cueRef1.current;
+    if (roomId === 2) return cueRef2.current;
+    if (roomId === 3) return cueRef3.current;
   }
 
   useEffect(() => {
@@ -74,23 +75,24 @@ export default function Localcaller({ roomsData, roomId }) {
     }, 10000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [renderButtonState]);
+
   useEffect(() => {
     setRenderButtonState(Button(roomId));
-  }, [renderButtonState]);
+  }, []);
 
   function Button(roomId) {
     let jsonData = {};
     let renderData = {};
-    if (roomId == 1) {
+    if (roomId === 1) {
       jsonData.current = cueRefData1.current;
       renderData.current = cueRef1.current;
     }
-    if (roomId == 2) {
+    if (roomId === 2) {
       jsonData.current = cueRefData2.current;
       renderData.current = cueRef2.current;
     }
-    if (roomId == 3) {
+    if (roomId === 3) {
       jsonData.current = cueRefData3.current;
       renderData.current = cueRef3.current;
     }

@@ -1,7 +1,5 @@
-// TODO: uuid probléma megoldása
-
 import React, { useEffect, useState } from "react";
-import uuid from "react-uuid";
+
 import Ticketpuller from "../ticketpuller/Ticketpuller.js";
 import Maindisplay from "../maindisplay/Maindisplay";
 import Localdisplay from "../localdisplay/Localdisplay";
@@ -55,7 +53,6 @@ export default function Mainpage({
   function renderLocalcaller(roomsData, setRoomsData, room, setRoom) {
     return Array.from({ length: roomsData.length }, (n, i) => (
       <Localcaller
-        // TODO:fix uuid problem
         key={roomsData[i].szam}
         roomId={roomsData[i].szam}
         room={room}
