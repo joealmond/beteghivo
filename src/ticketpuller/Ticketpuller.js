@@ -1,9 +1,8 @@
 // TODO: Tajszám integrálása, ellenőrzése
 // TODO: kiírt adatok felülvizsgálása, esetleg óra megjelenítése
-// TODO: jó lenne a switch state helyett valami rugalmasabb megoldás ami követi az apit...
 // TODO: a local storage helyett más megoldást találni
+// TODO: a kiadott sorszámnál meg lehetne jeleníteni több adatot
 
-import React, { useEffect } from "react";
 import Form from "./Form.js";
 
 const Ticketpuller = ({
@@ -14,41 +13,7 @@ const Ticketpuller = ({
   examCode,
   setExamCode,
   room,
-  setRoom,
-  roomsData,
 }) => {
-  useEffect(() => {
-    switch (examCode) {
-      case "V01":
-        setRoom("1");
-        // console.log("1. Körzeti nővér");
-        break;
-      case "V02":
-        setRoom("1");
-        // console.log("1. Körzeti nővér");
-        break;
-      case "V00":
-        setRoom("2");
-        // console.log("2. Általános orvos");
-        break;
-      case "V03":
-        setRoom("2");
-        // console.log("2. Általános orvos");
-        break;
-      case "V04":
-        setRoom("2");
-        // console.log("2. Általános orvos");
-        break;
-      case "V05":
-        setRoom("3");
-        // console.log("3. Bőrgyógyász");
-        break;
-      default:
-        setRoom("-");
-      // console.log("Nincs ilyen szoba.");
-    }
-  }, [examCode, setRoom]);
-
   let time = new Date(Date.parse(cueData.erkezesIdeje)).toLocaleTimeString(
     "hu-HU"
   );
@@ -71,12 +36,7 @@ const Ticketpuller = ({
           setExamCode={setExamCode}
         />
 
-        {cueData.sorszam && (
-          <p>
-            {"Kiadott sorszám: " + cueData.sorszam}
-            {" -  " + room + ". szoba"}
-          </p>
-        )}
+        {cueData.sorszam && <p>{"Kiadott sorszám: " + cueData.sorszam}</p>}
         {localStorage.setItem("cueNumber", cueData.sorszam)}
         {localStorage.setItem("cueRemain", cueData.varakozok)}
         {localStorage.setItem("cueInTime", time)}
