@@ -111,7 +111,7 @@ export default function Localcaller({ roomsData, roomId }) {
       renderData.current.shift();
     }
 
-    return <button onClick={() => callNext()}>Kérem a következőt</button>;
+    return <button onClick={callNext}>Kérem a következőt</button>;
   }
 
   return (
