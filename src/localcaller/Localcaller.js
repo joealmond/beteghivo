@@ -75,11 +75,12 @@ export default function Localcaller({ roomsData, roomId }) {
     }, 10000);
 
     return () => clearInterval(interval);
-  }, [renderButtonState]);
+  }, []);
 
   useEffect(() => {
     setRenderButtonState(Button(roomId));
-  }, []);
+    // TODO: resolve: "Warning: Maximum update depht exceeded..."
+  }, [renderButtonState]);
 
   function Button(roomId) {
     let jsonData = {};
@@ -87,14 +88,15 @@ export default function Localcaller({ roomsData, roomId }) {
     if (roomId === 1) {
       jsonData.current = cueRefData1.current;
       renderData.current = cueRef1.current;
-    }
-    if (roomId === 2) {
+    } else if (roomId === 2) {
       jsonData.current = cueRefData2.current;
       renderData.current = cueRef2.current;
-    }
-    if (roomId === 3) {
+    } else if (roomId === 3) {
       jsonData.current = cueRefData3.current;
       renderData.current = cueRef3.current;
+    } else {
+      // TODO: handle error
+      console.log("no matching room");
     }
     async function callNext() {
       const response = await fetch(`/behivas/${roomId}`, {
@@ -107,7 +109,6 @@ export default function Localcaller({ roomsData, roomId }) {
       const callData = await response.json();
       jsonData.current.shift();
       renderData.current.shift();
-      console.log(callData.sorszam, callData.szoba, callData.behívasIdeje);
     }
 
     return <button onClick={() => callNext()}>Kérem a következőt</button>;

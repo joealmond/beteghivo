@@ -1,6 +1,5 @@
-// TODO: 5db behívott sorszám kijelzése
-// TODO:  rendelerés programatikusan
 // TODO: stílus beállítása
+import { MAIN_DISPLAY_ROWS } from "../constants/globals.js";
 
 import React, { useEffect, useState } from "react";
 
@@ -22,26 +21,22 @@ export default function Maindisplay() {
     <section>
       <h2>Központi kijelző</h2>
       <div>
-        <div>
-          <h3>Sorszám: {allCueDataState[0]?.sorszam}</h3>
-          <h3>Helység: {allCueDataState[0]?.szoba}</h3>
-          <h3>
-            Behívás időpontja:{" "}
-            {new Date(
-              Date.parse(allCueDataState[0]?.behívasIdeje)
-            ).toLocaleTimeString("hu-HU")}
-          </h3>
-        </div>
-        <div>
-          <p>Sorszám: {allCueDataState[1]?.sorszam}</p>
-          <p>Helység: {allCueDataState[1]?.szoba}</p>
-          <p>
-            Behívás időpontja:{" "}
-            {new Date(
-              Date.parse(allCueDataState[1]?.behívasIdeje)
-            ).toLocaleTimeString("hu-HU")}
-          </p>
-        </div>
+        {Array(MAIN_DISPLAY_ROWS)
+          .fill(true)
+          .map((_, i) => {
+            return (
+              <div key={i}>
+                <h3>Sorszám: {allCueDataState[i]?.sorszam}</h3>
+                <h3>Helység: {allCueDataState[i]?.szoba}</h3>
+                <h3>
+                  Behívás időpontja:{" "}
+                  {new Date(
+                    Date.parse(allCueDataState[i]?.behívasIdeje)
+                  ).toLocaleTimeString("hu-HU")}
+                </h3>
+              </div>
+            );
+          })}
       </div>
     </section>
   );
