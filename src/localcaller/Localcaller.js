@@ -6,6 +6,7 @@ import uuid from "react-uuid";
 // TODO: redundás kód eltűntetése
 // TODO: programatikusan meghatározni a szobák számát
 // TODO: csak az adatokkal dolgozni és abból renderelni az elemekt
+// TODO: lefrissíteni a listát gombnyomáskor
 
 export default function Localcaller({ roomsData, roomId }) {
   const [rowState, setRowState] = useState([]);

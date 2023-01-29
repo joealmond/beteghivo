@@ -1,5 +1,7 @@
 // TODO: styling: window size for print
 // TODO: megjelenített értékek felülvizsgálása
+// TODO: rendelő kiírása!!!
+// TODO: queryparamétereken átadni az adatokat localstorage helyett
 
 export default function Ticketpage() {
   return (
