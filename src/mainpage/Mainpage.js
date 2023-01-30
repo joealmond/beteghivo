@@ -17,9 +17,7 @@ export default function Mainpage({
     async function getExams() {
       const response = await fetch("/vizsgalat");
       const examsData = await response.json();
-      const exams = examsData.map((exam) => exam.megnevezes);
-      const examCodes = examsData.map((exam) => exam.kod);
-      setExamsData({ exams, examCodes });
+      setExamsData(examsData);
     }
     getExams();
   }, []);

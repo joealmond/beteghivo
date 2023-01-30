@@ -1,8 +1,5 @@
 // TODO: javítani a form submit megoldást
-export default function FormButton({ setCueData, examsData, exam }) {
-  let examCode = Object.values(examsData.examCodes)[
-    Object.values(examsData.exams).indexOf(exam)
-  ];
+export default function FormButton({ setCueData, examsData, exam, buttonId }) {
   async function getCueNumber() {
     const response = await fetch("/sorszam", {
       method: "POST",
@@ -10,7 +7,7 @@ export default function FormButton({ setCueData, examsData, exam }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        vizsgalatKod: examCode,
+        vizsgalatKod: examsData[buttonId].kod,
         taj: "",
       }),
     });
@@ -18,7 +15,5 @@ export default function FormButton({ setCueData, examsData, exam }) {
     setCueData(cueData);
   }
 
-  return (
-    <input type="submit" name="" value={exam} onClick={() => getCueNumber()} />
-  );
+  return <input type="submit" name="" value={exam} onClick={getCueNumber} />;
 }

@@ -12,7 +12,7 @@ import Mainpage from "./mainpage/Mainpage";
 function App() {
   const [roomsData, setRoomsData] = useState([]);
   const [cueData, setCueData] = useState({});
-  const [examsData, setExamsData] = useState({});
+  const [examsData, setExamsData] = useState([]);
   return (
     <BrowserRouter>
       <Routes>

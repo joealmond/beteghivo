@@ -4,15 +4,16 @@
 import FormButton from "./FormButton.js";
 
 export default function Form({ examsData, setExamsData, cueData, setCueData }) {
-  function renderButton(exam) {
+  function renderButton(exam, buttonId) {
     return (
-      <li key={exam}>
+      <li key={buttonId}>
         <FormButton
           cueData={cueData}
           setCueData={setCueData}
           examsData={examsData}
           setExamsData={setExamsData}
           exam={exam}
+          buttonId={buttonId}
         />
       </li>
     );
@@ -34,8 +35,12 @@ export default function Form({ examsData, setExamsData, cueData, setCueData }) {
         </div>
       </div>
       <div>
-        {examsData.exams && (
-          <ul>{examsData.exams.map((exam) => renderButton(exam))}</ul>
+        {examsData && (
+          <ul>
+            {examsData.map((exam, buttonId) =>
+              renderButton(exam.megnevezes, buttonId)
+            )}
+          </ul>
         )}
       </div>
     </form>

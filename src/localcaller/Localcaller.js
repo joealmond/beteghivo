@@ -39,7 +39,7 @@ export default function Localcaller({ roomsData, roomId }) {
 
     return (
       <>
-        {rowState.map((row, i) => (
+        {rowState.map((row) => (
           <tr key={uuid()}>
             <td>{row.sorszam}</td>
             <td>{row.vizsgalatKod}</td>
