@@ -3,14 +3,7 @@
 
 import FormButton from "./FormButton.js";
 
-export default function Form({
-  examsData,
-  setExamsData,
-  cueData,
-  setCueData,
-  examCode,
-  setExamCode,
-}) {
+export default function Form({ examsData, setExamsData, cueData, setCueData }) {
   function renderButton(exam) {
     return (
       <li key={exam}>
@@ -20,8 +13,6 @@ export default function Form({
           examsData={examsData}
           setExamsData={setExamsData}
           exam={exam}
-          examCode={examCode}
-          setExamCode={setExamCode}
         />
       </li>
     );

@@ -13,7 +13,6 @@ function App() {
   const [roomsData, setRoomsData] = useState([]);
   const [cueData, setCueData] = useState({});
   const [examsData, setExamsData] = useState({});
-  const [examCode, setExamCode] = useState();
   return (
     <BrowserRouter>
       <Routes>
@@ -26,8 +25,6 @@ function App() {
               setCueData={setCueData}
               examsData={examsData}
               setExamsData={setExamsData}
-              examCode={examCode}
-              setExamCode={setExamCode}
               roomsData={roomsData}
               setRoomsData={setRoomsData}
             />

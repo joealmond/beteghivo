@@ -5,14 +5,7 @@
 
 import Form from "./Form.js";
 
-const Ticketpuller = ({
-  cueData,
-  setCueData,
-  examsData,
-  setExamsData,
-  examCode,
-  setExamCode,
-}) => {
+const Ticketpuller = ({ cueData, setCueData, examsData, setExamsData }) => {
   let time = new Date(Date.parse(cueData.erkezesIdeje)).toLocaleTimeString(
     "hu-HU"
   );
@@ -31,8 +24,6 @@ const Ticketpuller = ({
           setExamsData={setExamsData}
           cueData={cueData}
           setCueData={setCueData}
-          examCode={examCode}
-          setExamCode={setExamCode}
         />
 
         {cueData.sorszam && <p>{"Kiadott sorszám: " + cueData.sorszam}</p>}

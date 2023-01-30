@@ -1,10 +1,5 @@
 // TODO: javítani a form submit megoldást
-export default function FormButton({
-  setCueData,
-  examsData,
-  exam,
-  setExamCode,
-}) {
+export default function FormButton({ setCueData, examsData, exam }) {
   let examCode = Object.values(examsData.examCodes)[
     Object.values(examsData.exams).indexOf(exam)
   ];
@@ -20,7 +15,6 @@ export default function FormButton({
       }),
     });
     const cueData = await response.json();
-    setExamCode(examCode);
     setCueData(cueData);
   }
 

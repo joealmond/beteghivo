@@ -10,8 +10,6 @@ export default function Mainpage({
   setCueData,
   examsData,
   setExamsData,
-  examCode,
-  setExamCode,
   roomsData,
   setRoomsData,
 }) {
@@ -69,8 +67,6 @@ export default function Mainpage({
         setCueData={setCueData}
         examsData={examsData}
         setExamsData={setExamsData}
-        examCode={examCode}
-        setExamCode={setExamCode}
         roomsData={roomsData}
       />
       <Maindisplay />
