@@ -23,7 +23,6 @@ export default function FormButton({ setCueData, examsData, exam, buttonId }) {
     } catch (error) {
       setError(error.message);
     }
-    console.log(error);
   }
 
   return <input type="submit" name="" value={exam} onClick={getCueNumber} />;

@@ -61,7 +61,6 @@ export default function Mainpage({
       } catch (error) {
         setError(error.message);
       }
-      console.log(error);
     }
 
     getRooms();
@@ -103,7 +102,8 @@ export default function Mainpage({
         setExamsData={setExamsData}
         roomsData={roomsData}
       />
-      <Maindisplay />
+      <Maindisplay roomsData={roomsData} />
+
       {renderLocaldisplay(roomsData, setRoomsData)}
       {renderLocalcaller(roomsData, setRoomsData)}
     </>

@@ -1,3 +1,0 @@
-const MAIN_DISPLAY_ROWS = 3;
-
-export { MAIN_DISPLAY_ROWS };

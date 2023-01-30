@@ -1,6 +1,5 @@
 // TODO: javítani a táblázat formátumát, adatait
 // TODO: stílus beállítása - lelóg a gomb, táblázat megjelenés stb..
-// TODO: programatikusan meghatározni a szobák számát
 // TODO: lefrissíteni a listát gombnyomáskor
 
 import React, { useEffect, useState } from "react";
@@ -36,7 +35,6 @@ export default function Localcaller({ roomsData, roomId }) {
         } catch (error) {
           setError(error.message);
         }
-        console.log(error);
       }
       let interval = setInterval(() => {
         getRoomCue();
@@ -91,7 +89,6 @@ export default function Localcaller({ roomsData, roomId }) {
       } catch (error) {
         setError(error.message);
       }
-      console.log(error);
     }
 
     return <button onClick={callNext}>Kérem a következőt</button>;

@@ -1,9 +1,7 @@
 // TODO: stílus beállítása
-import { MAIN_DISPLAY_ROWS } from "../constants/globals.js";
-
 import React, { useEffect, useState } from "react";
 
-export default function Maindisplay() {
+export default function Maindisplay({ roomsData }) {
   const [allCueDataState, setAllCueDataState] = useState([]);
   const [error, setError] = useState(null);
 
@@ -11,7 +9,7 @@ export default function Maindisplay() {
     async function getAllCue() {
       try {
         const response = await fetch("/behivas");
-        // it allways gives back only array of length 3
+        // it allways gives back only array of length 3!?
         const allCueData = await response.json();
         if (!response.ok) {
           throw new Error(allCueData.message);
@@ -20,7 +18,6 @@ export default function Maindisplay() {
       } catch (error) {
         setError(error.message);
       }
-      console.log(error);
     }
 
     setInterval(() => {
@@ -32,7 +29,7 @@ export default function Maindisplay() {
     <section>
       <h2>Központi kijelző</h2>
       <div>
-        {Array(MAIN_DISPLAY_ROWS)
+        {Array(roomsData?.length)
           .fill(true)
           .map((_, i) => {
             return (
