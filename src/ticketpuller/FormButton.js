@@ -1,8 +1,5 @@
 // TODO: javítani a form submit megoldást
-import React, { useState } from "react";
 export default function FormButton({ setCueData, examsData, exam, buttonId }) {
-  const [error, setError] = useState(null);
-
   async function getCueNumber() {
     try {
       const response = await fetch("/sorszam", {
@@ -21,7 +18,7 @@ export default function FormButton({ setCueData, examsData, exam, buttonId }) {
       }
       setCueData(cueData);
     } catch (error) {
-      setError(error.message);
+      console.log(error);
     }
   }
 

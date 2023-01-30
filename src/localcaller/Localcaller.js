@@ -7,7 +7,6 @@ import uuid from "react-uuid";
 
 export default function Localcaller({ roomsData, roomId }) {
   const [rowState, setRowState] = useState([]);
-  const [error, setError] = useState(null);
 
   function TableRow(roomId) {
     useEffect(() => {
@@ -33,7 +32,7 @@ export default function Localcaller({ roomsData, roomId }) {
             ]);
           }
         } catch (error) {
-          setError(error.message);
+          console.log(error);
         }
       }
       let interval = setInterval(() => {
@@ -87,7 +86,7 @@ export default function Localcaller({ roomsData, roomId }) {
           // }
         }
       } catch (error) {
-        setError(error.message);
+        console.log(error);
       }
     }
 

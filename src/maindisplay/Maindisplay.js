@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 
 export default function Maindisplay({ roomsData }) {
   const [allCueDataState, setAllCueDataState] = useState([]);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function getAllCue() {
@@ -16,7 +15,7 @@ export default function Maindisplay({ roomsData }) {
         }
         setAllCueDataState(allCueData);
       } catch (error) {
-        setError(error.message);
+        console.log(error);
       }
     }
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import Ticketpuller from "../ticketpuller/Ticketpuller.js";
 import Maindisplay from "../maindisplay/Maindisplay";
@@ -13,8 +13,6 @@ export default function Mainpage({
   roomsData,
   setRoomsData,
 }) {
-  const [error, setError] = useState(null);
-
   useEffect(() => {
     async function getExams() {
       try {
@@ -25,7 +23,7 @@ export default function Mainpage({
         }
         setExamsData(examsData);
       } catch (error) {
-        setError(error.message);
+        console.log(error);
       }
     }
     getExams();
@@ -34,7 +32,7 @@ export default function Mainpage({
   useEffect(() => {
     async function getRooms() {
       try {
-        const response = await fetch("/szobak");
+        const response = await fetch("/szobaks");
         const roomsData = await response.json();
         if (!response.ok) {
           throw new Error(roomsData.message);
@@ -59,7 +57,7 @@ export default function Mainpage({
           ]);
         }
       } catch (error) {
-        setError(error.message);
+        console.log(error);
       }
     }
 
