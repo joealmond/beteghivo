@@ -13,38 +13,55 @@ export default function Mainpage({
   roomsData,
   setRoomsData,
 }) {
+  const [error, setError] = useState(null);
+
   useEffect(() => {
     async function getExams() {
-      const response = await fetch("/vizsgalat");
-      const examsData = await response.json();
-      setExamsData(examsData);
+      try {
+        const response = await fetch("/vizsgalat");
+        const examsData = await response.json();
+        if (!response.ok) {
+          throw new Error(examsData.message);
+        }
+        setExamsData(examsData);
+      } catch (error) {
+        setError(error.message);
+      }
     }
     getExams();
   }, []);
 
   useEffect(() => {
     async function getRooms() {
-      const response = await fetch("/szobak");
-      const roomsData = await response.json();
+      try {
+        const response = await fetch("/szobak");
+        const roomsData = await response.json();
+        if (!response.ok) {
+          throw new Error(roomsData.message);
+        }
 
-      if (roomsData[0]) {
-        setRoomsData(roomsData);
-      } else {
-        setRoomsData([
-          {
-            szam: 1,
-            megnevezes: "1.szoba",
-          },
-          {
-            szam: 2,
-            megnevezes: "2.szoba",
-          },
-          {
-            szam: 3,
-            megnevezes: "3.szoba",
-          },
-        ]);
+        if (roomsData[0]) {
+          setRoomsData(roomsData);
+        } else {
+          setRoomsData([
+            {
+              szam: 1,
+              megnevezes: "1.szoba",
+            },
+            {
+              szam: 2,
+              megnevezes: "2.szoba",
+            },
+            {
+              szam: 3,
+              megnevezes: "3.szoba",
+            },
+          ]);
+        }
+      } catch (error) {
+        setError(error.message);
       }
+      console.log(error);
     }
 
     getRooms();

@@ -1,6 +1,5 @@
 // TODO: Tajszám integrálása, ellenőrzése
 // TODO: kiírt adatok felülvizsgálása, esetleg óra megjelenítése
-// TODO: a local storage helyett más megoldást találni
 // TODO: a kiadott sorszámnál meg lehetne jeleníteni több adatot
 
 import Form from "./Form.js";

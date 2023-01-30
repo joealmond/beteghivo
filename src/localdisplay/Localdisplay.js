@@ -4,11 +4,21 @@ import React, { useEffect, useState } from "react";
 
 export default function Localdisplay({ roomsData }) {
   const [allCueDataState, setAllCueDataState] = useState({});
+  const [error, setError] = useState(null);
+
   useEffect(() => {
     async function getAllCue() {
-      const response = await fetch(`/behivas/${roomsData.szam}`);
-      const allCueData = await response.json();
-      setAllCueDataState(allCueData);
+      try {
+        const response = await fetch(`/behivas/${roomsData.szam}`);
+        const allCueData = await response.json();
+        if (!response.ok) {
+          throw new Error(allCueData.message);
+        }
+        setAllCueDataState(allCueData);
+      } catch (error) {
+        setError(error.message);
+      }
+      console.log(error);
     }
 
     setInterval(() => {

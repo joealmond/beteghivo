@@ -8,27 +8,36 @@ import uuid from "react-uuid";
 
 export default function Localcaller({ roomsData, roomId }) {
   const [rowState, setRowState] = useState([]);
+  const [error, setError] = useState(null);
 
   function TableRow(roomId) {
     useEffect(() => {
       async function getRoomCue() {
-        const response = await fetch(`/sorszam/${roomId}`);
-        // the number of "varakozok" is not seems correct
-        const roomCueData = await response.json();
-        setRowState(roomCueData);
-        if (roomCueData[0]) {
+        try {
+          const response = await fetch(`/sorszam/${roomId}`);
+          // the number of "varakozok" is does not seems correct
+          const roomCueData = await response.json();
+          if (!response.ok) {
+            throw new Error(roomCueData.message);
+          }
           setRowState(roomCueData);
-        } else {
-          setRowState([
-            {
-              sorszam: " --",
-              vizsgalatKod: " --",
-              taj: " --",
-              erkezesIdeje: " --",
-              varakozok: " --",
-            },
-          ]);
+          if (roomCueData[0]) {
+            setRowState(roomCueData);
+          } else {
+            setRowState([
+              {
+                sorszam: " --",
+                vizsgalatKod: " --",
+                taj: " --",
+                erkezesIdeje: " --",
+                varakozok: " --",
+              },
+            ]);
+          }
+        } catch (error) {
+          setError(error.message);
         }
+        console.log(error);
       }
       let interval = setInterval(() => {
         getRoomCue();
@@ -59,24 +68,31 @@ export default function Localcaller({ roomsData, roomId }) {
 
   function Button(roomId) {
     async function callNext() {
-      if (rowState[0]?.sorszam !== " --" && rowState[0]) {
-        const response = await fetch(`/behivas/${roomId}`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(rowState[0]?.sorszam),
-        });
+      try {
+        if (rowState[0]?.sorszam !== " --" && rowState[0]) {
+          const response = await fetch(`/behivas/${roomId}`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(rowState[0]?.sorszam),
+          });
+          const callData = await response.json();
+          if (!response.ok) {
+            throw new Error(callData.message);
+          }
 
-        // TODO: ezeket ki jelezgetni
-        // {
-        //   "sorszam": 0,
-        //   "szoba": 0,
-        //   "behívasIdeje": "2023-01-30T12:17:25.480Z"
-        // }
-
-        const callData = await response.json();
+          // TODO: ezeket ki jelezgetni
+          // {
+          //   "sorszam": 0,
+          //   "szoba": 0,
+          //   "behívasIdeje": "2023-01-30T12:17:25.480Z"
+          // }
+        }
+      } catch (error) {
+        setError(error.message);
       }
+      console.log(error);
     }
 
     return <button onClick={callNext}>Kérem a következőt</button>;

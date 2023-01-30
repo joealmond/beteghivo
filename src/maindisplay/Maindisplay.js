@@ -5,12 +5,22 @@ import React, { useEffect, useState } from "react";
 
 export default function Maindisplay() {
   const [allCueDataState, setAllCueDataState] = useState([]);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
     async function getAllCue() {
-      const response = await fetch("/behivas");
-      // it allways gives back only array of length 3
-      const allCueData = await response.json();
-      setAllCueDataState(allCueData);
+      try {
+        const response = await fetch("/behivas");
+        // it allways gives back only array of length 3
+        const allCueData = await response.json();
+        if (!response.ok) {
+          throw new Error(allCueData.message);
+        }
+        setAllCueDataState(allCueData);
+      } catch (error) {
+        setError(error.message);
+      }
+      console.log(error);
     }
 
     setInterval(() => {
