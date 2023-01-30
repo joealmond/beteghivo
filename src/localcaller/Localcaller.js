@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import uuid from "react-uuid";
-
 // TODO: javítani a táblázat formátumát, adatait
 // TODO: stílus beállítása - lelóg a gomb, táblázat megjelenés stb..
 // TODO: programatikusan meghatározni a szobák számát
 // TODO: lefrissíteni a listát gombnyomáskor
+
+import React, { useEffect, useState } from "react";
+import uuid from "react-uuid";
 
 export default function Localcaller({ roomsData, roomId }) {
   const [rowState, setRowState] = useState([]);
@@ -15,7 +15,6 @@ export default function Localcaller({ roomsData, roomId }) {
       async function getRoomCue() {
         try {
           const response = await fetch(`/sorszam/${roomId}`);
-          // the number of "varakozok" is does not seems correct
           const roomCueData = await response.json();
           if (!response.ok) {
             throw new Error(roomCueData.message);
