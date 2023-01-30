@@ -10,25 +10,14 @@ import Ticketpage from "./ticketpage/Ticketpage";
 import Mainpage from "./mainpage/Mainpage";
 
 function App() {
-  const [roomsData, setRoomsData] = useState({});
+  const [roomsData, setRoomsData] = useState([]);
   const [cueData, setCueData] = useState({});
   const [examsData, setExamsData] = useState({});
-  const [examCode, setExamCode] = useState({});
-  const [room, setRoom] = useState({});
+  const [examCode, setExamCode] = useState();
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/sorszam"
-          element={
-            <Ticketpage
-              cueData={cueData}
-              setCueData={setCueData}
-              room={room}
-              setRoom={setRoom}
-            />
-          }
-        />
+        <Route path="/sorszam" element={<Ticketpage />} />
         <Route
           path="/"
           element={
@@ -39,8 +28,6 @@ function App() {
               setExamsData={setExamsData}
               examCode={examCode}
               setExamCode={setExamCode}
-              room={room}
-              setRoom={setRoom}
               roomsData={roomsData}
               setRoomsData={setRoomsData}
             />

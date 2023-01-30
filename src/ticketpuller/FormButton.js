@@ -20,7 +20,6 @@ export default function FormButton({
       }),
     });
     const cueData = await response.json();
-
     setExamCode(examCode);
     setCueData(cueData);
   }

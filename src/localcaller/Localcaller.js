@@ -31,10 +31,10 @@ export default function Localcaller({ roomsData, roomId }) {
           ]);
         }
       }
-      setInterval(() => {
-        // TODO: add clearinterval
+      let interval = setInterval(() => {
         getRoomCue();
       }, 10000);
+      return () => clearInterval(interval);
     }, []);
 
     return (

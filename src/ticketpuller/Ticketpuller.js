@@ -12,7 +12,6 @@ const Ticketpuller = ({
   setExamsData,
   examCode,
   setExamCode,
-  room,
 }) => {
   let time = new Date(Date.parse(cueData.erkezesIdeje)).toLocaleTimeString(
     "hu-HU"
@@ -40,7 +39,6 @@ const Ticketpuller = ({
         {localStorage.setItem("cueNumber", cueData.sorszam)}
         {localStorage.setItem("cueRemain", cueData.varakozok)}
         {localStorage.setItem("cueInTime", time)}
-        {localStorage.setItem("room", room)}
       </div>
     </section>
   );

@@ -12,8 +12,6 @@ export default function Mainpage({
   setExamsData,
   examCode,
   setExamCode,
-  room,
-  setRoom,
   roomsData,
   setRoomsData,
 }) {
@@ -37,7 +35,7 @@ export default function Mainpage({
     getRooms();
   }, []);
 
-  function renderLocaldisplay(roomsData, setRoomsData, room, setRoom) {
+  function renderLocaldisplay(roomsData, setRoomsData) {
     return Array.from({ length: roomsData.length }, (n, i) => (
       <Localdisplay
         key={roomsData[i].szam}
@@ -50,13 +48,11 @@ export default function Mainpage({
     ));
   }
 
-  function renderLocalcaller(roomsData, setRoomsData, room, setRoom) {
+  function renderLocalcaller(roomsData, setRoomsData) {
     return Array.from({ length: roomsData.length }, (n, i) => (
       <Localcaller
         key={roomsData[i].szam}
         roomId={roomsData[i].szam}
-        room={room}
-        setRoom={setRoom}
         roomsData={{
           szam: roomsData[i].szam,
           megnevezes: roomsData[i].megnevezes,
@@ -75,13 +71,11 @@ export default function Mainpage({
         setExamsData={setExamsData}
         examCode={examCode}
         setExamCode={setExamCode}
-        room={room}
-        setRoom={setRoom}
         roomsData={roomsData}
       />
       <Maindisplay />
-      {renderLocaldisplay(roomsData, setRoomsData, room, setRoom)}
-      {renderLocalcaller(roomsData, setRoomsData, room, setRoom)}
+      {renderLocaldisplay(roomsData, setRoomsData)}
+      {renderLocalcaller(roomsData, setRoomsData)}
     </>
   );
 }
