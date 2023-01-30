@@ -32,7 +32,7 @@ export default function Mainpage({
   useEffect(() => {
     async function getRooms() {
       try {
-        const response = await fetch("/szobaks");
+        const response = await fetch("/szobak");
         const roomsData = await response.json();
         if (!response.ok) {
           throw new Error(roomsData.message);
