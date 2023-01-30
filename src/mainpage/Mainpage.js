@@ -26,8 +26,27 @@ export default function Mainpage({
     async function getRooms() {
       const response = await fetch("/szobak");
       const roomsData = await response.json();
-      setRoomsData(roomsData);
+
+      if (roomsData[0]) {
+        setRoomsData(roomsData);
+      } else {
+        setRoomsData([
+          {
+            szam: 1,
+            megnevezes: "1.szoba",
+          },
+          {
+            szam: 2,
+            megnevezes: "2.szoba",
+          },
+          {
+            szam: 3,
+            megnevezes: "3.szoba",
+          },
+        ]);
+      }
     }
+
     getRooms();
   }, []);
 

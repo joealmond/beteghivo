@@ -3,30 +3,29 @@ import uuid from "react-uuid";
 
 // TODO: javítani a táblázat formátumát, adatait
 // TODO: stílus beállítása - lelóg a gomb, táblázat megjelenés stb..
-// TODO: redundás kód eltűntetése
 // TODO: programatikusan meghatározni a szobák számát
-// TODO: csak az adatokkal dolgozni és abból renderelni az elemekt
 // TODO: lefrissíteni a listát gombnyomáskor
 
 export default function Localcaller({ roomsData, roomId }) {
   const [rowState, setRowState] = useState([]);
-  const [renderButtonState, setRenderButtonState] = useState();
 
   function TableRow(roomId) {
     useEffect(() => {
       async function getRoomCue() {
         const response = await fetch(`/sorszam/${roomId}`);
+        // the number of "varakozok" is not seems correct
         const roomCueData = await response.json();
+        setRowState(roomCueData);
         if (roomCueData[0]) {
           setRowState(roomCueData);
         } else {
           setRowState([
             {
-              sorszam: "---",
-              vizsgalatKod: "---",
-              taj: "-------",
-              erkezesIdeje: "----",
-              varakozok: "--",
+              sorszam: " --",
+              vizsgalatKod: " --",
+              taj: " --",
+              erkezesIdeje: " --",
+              varakozok: " --",
             },
           ]);
         }
@@ -41,11 +40,17 @@ export default function Localcaller({ roomsData, roomId }) {
       <>
         {rowState.map((row) => (
           <tr key={uuid()}>
-            <td>{row.sorszam}</td>
-            <td>{row.vizsgalatKod}</td>
-            <td>{row.erkezesIdeje}</td>
-            <td>{row.taj}</td>
-            <td>{row.varakozok}</td>
+            <td>{row.sorszam ? row.sorszam : " --"}</td>
+            <td>{row.vizsgalatKod ? row.vizsgalatKod : " --"}</td>
+            <td>
+              {row.erkezesIdeje !== " --" && row.erkezesIdeje
+                ? new Date(Date.parse(row.erkezesIdeje)).toLocaleTimeString(
+                    "hu-HU"
+                  )
+                : " --"}
+            </td>
+            <td>{row.taj ? row.taj : " --"}</td>
+            <td>{row.varakozok ? row.varakozok : " --"}</td>
           </tr>
         ))}
       </>
@@ -54,15 +59,24 @@ export default function Localcaller({ roomsData, roomId }) {
 
   function Button(roomId) {
     async function callNext() {
-      const response = await fetch(`/behivas/${roomId}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(rowState[0].sorszam),
-      });
-      // TODO: need this?
-      const callData = await response.json();
+      if (rowState[0]?.sorszam !== " --" && rowState[0]) {
+        const response = await fetch(`/behivas/${roomId}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(rowState[0]?.sorszam),
+        });
+
+        // TODO: ezeket ki jelezgetni
+        // {
+        //   "sorszam": 0,
+        //   "szoba": 0,
+        //   "behívasIdeje": "2023-01-30T12:17:25.480Z"
+        // }
+
+        const callData = await response.json();
+      }
     }
 
     return <button onClick={callNext}>Kérem a következőt</button>;
@@ -72,7 +86,7 @@ export default function Localcaller({ roomsData, roomId }) {
       <h2>Behívó</h2>
       <div>
         <div>
-          <h3>Rendelő {roomsData.szam + ".  - " + roomsData.megnevezes}</h3>
+          <h3>{roomsData?.megnevezes}</h3>
         </div>
         <table>
           <thead>
@@ -81,7 +95,7 @@ export default function Localcaller({ roomsData, roomId }) {
               <th>Vizsgálat</th>
               <th>Időpont</th>
               <th>TAJ</th>
-              <th>Szoba</th>
+              <th>Várakozók</th>
             </tr>
           </thead>
           <tbody>{TableRow(roomId)}</tbody>

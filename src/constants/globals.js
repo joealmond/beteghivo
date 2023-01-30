@@ -1,3 +1,3 @@
-const MAIN_DISPLAY_ROWS = 5;
+const MAIN_DISPLAY_ROWS = 3;
 
 export { MAIN_DISPLAY_ROWS };
