@@ -5,10 +5,6 @@
 import Form from "./Form.js";
 
 const Ticketpuller = ({ cueData, setCueData, examsData, setExamsData }) => {
-  let time = new Date(Date.parse(cueData.erkezesIdeje)).toLocaleTimeString(
-    "hu-HU"
-  );
-
   return (
     <section>
       <h2>Sorszámosztó automata</h2>
@@ -26,9 +22,6 @@ const Ticketpuller = ({ cueData, setCueData, examsData, setExamsData }) => {
         />
 
         {cueData.sorszam && <p>{"Kiadott sorszám: " + cueData.sorszam}</p>}
-        {localStorage.setItem("cueNumber", cueData.sorszam)}
-        {localStorage.setItem("cueRemain", cueData.varakozok)}
-        {localStorage.setItem("cueInTime", time)}
       </div>
     </section>
   );

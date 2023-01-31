@@ -1,8 +1,12 @@
-// TODO: javítani a form formátumát
-
 import FormButton from "./FormButton.js";
+import React, { useState } from "react";
 
 export default function Form({ examsData, setExamsData, cueData, setCueData }) {
+  const [tajInput, setTajInput] = useState("8db számjegy");
+  const handleTajInput = (event) => {
+    setTajInput(event.target.value);
+  };
+
   function renderButton(exam, buttonId) {
     return (
       <li key={buttonId}>
@@ -13,18 +17,21 @@ export default function Form({ examsData, setExamsData, cueData, setCueData }) {
           setExamsData={setExamsData}
           exam={exam}
           buttonId={buttonId}
+          tajInput={tajInput}
         />
       </li>
     );
   }
 
   return (
-    <form action="/sorszam" method="get" target="_blank">
+    <form action="/ticket" method="get" target="_blank">
       <div>
         <div className="inputWithLabel">
           <label htmlFor="name">Tajszám</label>
           <input
             type="text"
+            value={tajInput}
+            onChange={handleTajInput}
             id="name"
             name="name"
             minLength="8"
