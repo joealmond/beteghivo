@@ -55,10 +55,21 @@ label:after {
 
 p {
   margin: 0.4rem;
+  text-align: center;
 }
 
 th,
 td {
   padding: 0.2rem;
   text-align: center;
+}
+
+h3 > p {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.roomHeader {
+  font-size: 1.5rem;
+  font-weight: normal;
 }

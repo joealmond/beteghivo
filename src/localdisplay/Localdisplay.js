@@ -29,24 +29,27 @@ export default function Localdisplay({ roomsData }) {
       <h2>Helység kijelző</h2>
       <div>
         <div>
-          <h3>{roomsData?.megnevezes}</h3>
+          <h3 className="roomHeader">{roomsData?.megnevezes}</h3>
         </div>
         <div>
           <div>
             <h3>
               Sorszám:{" "}
-              {allCueDataState.sorszam ? allCueDataState.sorszam : " --"}
+              <p>{allCueDataState.sorszam ? allCueDataState.sorszam : " --"}</p>
             </h3>
             <h3>
-              Helység: {allCueDataState.szoba ? allCueDataState.szoba : " --"}
+              Helység:{" "}
+              <p>{allCueDataState.szoba ? allCueDataState.szoba : " --"}</p>
             </h3>
             <h3>
               Behívás időpontja:{" "}
-              {allCueDataState.behívasIdeje
-                ? new Date(
-                    Date.parse(allCueDataState.behívasIdeje)
-                  ).toLocaleTimeString("hu-HU")
-                : " --"}
+              <p>
+                {allCueDataState.behívasIdeje
+                  ? new Date(
+                      Date.parse(allCueDataState.behívasIdeje)
+                    ).toLocaleTimeString("hu-HU")
+                  : " --"}
+              </p>
             </h3>
           </div>
         </div>

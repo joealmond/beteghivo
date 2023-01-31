@@ -97,7 +97,7 @@ export default function Localcaller({ roomsData, roomId }) {
       <h2>Behívó</h2>
       <div>
         <div>
-          <h3>{roomsData?.megnevezes}</h3>
+          <h3 className="roomHeader">{roomsData?.megnevezes}</h3>
         </div>
         <table>
           <thead>

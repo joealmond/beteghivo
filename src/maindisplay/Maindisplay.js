@@ -34,20 +34,24 @@ export default function Maindisplay({ roomsData }) {
             return (
               <div key={i}>
                 <h3 className={styles.text}>
-                  Sorszám:{" "}
-                  {allCueDataState[i] ? allCueDataState[i].sorszam : " --"}
+                  Sorszám
+                  <p>
+                    {allCueDataState[i] ? allCueDataState[i].sorszam : " --"}
+                  </p>
                 </h3>
                 <h3 className={styles.text}>
-                  Helység:{" "}
-                  {allCueDataState[i] ? allCueDataState[i].szoba : " --"}
+                  Helység
+                  <p>{allCueDataState[i] ? allCueDataState[i].szoba : " --"}</p>
                 </h3>
                 <h3 className={styles.text}>
-                  Behívás időpontja:
-                  {allCueDataState[i]
-                    ? new Date(
-                        Date.parse(allCueDataState[i]?.behívasIdeje)
-                      ).toLocaleTimeString("hu-HU")
-                    : " --"}
+                  Behívás időpontja
+                  <p>
+                    {allCueDataState[i]
+                      ? new Date(
+                          Date.parse(allCueDataState[i]?.behívasIdeje)
+                        ).toLocaleTimeString("hu-HU")
+                      : " --"}
+                  </p>
                 </h3>
               </div>
             );

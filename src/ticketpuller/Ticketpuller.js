@@ -9,7 +9,7 @@ const Ticketpuller = ({ cueData, setCueData, examsData, setExamsData }) => {
     <section>
       <h2>Sorszámosztó automata</h2>
       <div>
-        <h3>Kérem válasszon vizsgálatot</h3>
+        <h3 className="roomHeader">Kérem válasszon vizsgálatot</h3>
         <p>
           Opcionálisan megadhatja tajszámát,
           <br />a gyorsabb ügyintézés érdekében.
