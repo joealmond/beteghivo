@@ -1,4 +1,4 @@
-// TODO: stílus beállítása
+import styles from "./Maindisplay.module.css";
 import React, { useEffect, useState } from "react";
 
 export default function Maindisplay({ roomsData }) {
@@ -33,15 +33,15 @@ export default function Maindisplay({ roomsData }) {
           .map((_, i) => {
             return (
               <div key={i}>
-                <h3>
+                <h3 className={styles.text}>
                   Sorszám:{" "}
                   {allCueDataState[i] ? allCueDataState[i].sorszam : " --"}
                 </h3>
-                <h3>
+                <h3 className={styles.text}>
                   Helység:{" "}
                   {allCueDataState[i] ? allCueDataState[i].szoba : " --"}
                 </h3>
-                <h3>
+                <h3 className={styles.text}>
                   Behívás időpontja:
                   {allCueDataState[i]
                     ? new Date(

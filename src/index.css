@@ -52,3 +52,13 @@ li > input {
 label:after {
   content: ": ";
 }
+
+p {
+  margin: 0.4rem;
+}
+
+th,
+td {
+  padding: 0.2rem;
+  text-align: center;
+}
