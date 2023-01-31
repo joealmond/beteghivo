@@ -2,7 +2,7 @@ import FormButton from "./FormButton.js";
 import React, { useState } from "react";
 
 export default function Form({ examsData, setExamsData, cueData, setCueData }) {
-  const [tajInput, setTajInput] = useState("8db számjegy");
+  const [tajInput, setTajInput] = useState("9db számjegy");
   const handleTajInput = (event) => {
     setTajInput(event.target.value);
   };
@@ -34,8 +34,8 @@ export default function Form({ examsData, setExamsData, cueData, setCueData }) {
             onChange={handleTajInput}
             id="name"
             name="name"
-            minLength="8"
-            maxLength="8"
+            minLength="9"
+            maxLength="9"
             size="10"
           />
         </div>
